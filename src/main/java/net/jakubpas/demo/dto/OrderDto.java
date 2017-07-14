@@ -7,15 +7,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "Model", description = "Model description")
+@ApiModel(value = "Order DTO", description = "Placed order DTO")
 public class OrderDto {
-
-    @ApiModelProperty(value = "Existing product Id")
-    private Integer productId;
+    @ApiModelProperty(value = "Existing product Ids and quantity")
+    private List<PurchasedProductsDto> products;
     @ApiModelProperty(value = "Company name", example = "IBM")
     private String companyName;
     @ApiModelProperty(value = "Email address", example = "IBM")
