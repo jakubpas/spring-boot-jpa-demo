@@ -16,7 +16,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    private Integer ecoId;
     private String name;
     private String email;
     private String phone;

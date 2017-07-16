@@ -8,7 +8,10 @@ import net.jakubpas.demo.repository.ProductRepository;
 import org.mapstruct.Mapper;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -30,12 +33,15 @@ public abstract class OrderMapper {
         account.setCity(OrderDto.getCity());
         account.setZip(OrderDto.getZip());
         order.setAccount(account);
+        order.setCreateDate(new Date());
 
         List<Product> products = new ArrayList<>();
 
         OrderDto.getProducts().forEach((productDto ->
                 IntStream.range(0, productDto.getQuantity()).forEach(i ->
-                        products.add(productRepository.getOne(productDto.getProductId())))));
+                            products.add(productRepository.getOne(productDto.getProductId())))));
+
+        order.setTotalPrice(products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
 
         order.setProducts(products);
         return order;

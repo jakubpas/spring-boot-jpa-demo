@@ -27,8 +27,8 @@ public class ProductService {
 	}
 
 	public void loadProducts() {
-		productRepository.save(new Product(0,new Long("1001"), "Product 1", "Product 1 description", new BigDecimal("101.1")));
-		productRepository.save(new Product(1,new Long("1002"), "Product 2", "Product 1 description", new BigDecimal("204.5")));
-		productRepository.save(new Product(2,new Long("1004"), "Product 3", "Product 1 description", new BigDecimal("305.7")));
+		productRepository.save(new Product(1,new Long("1001"), "Product 1", "Product 1 description", new BigDecimal("101.1")));
+		productRepository.save(new Product(2,new Long("1002"), "Product 2", "Product 1 description", new BigDecimal("204.5")));
+		productRepository.save(new Product(3,new Long("1004"), "Product 3", "Product 1 description", new BigDecimal("305.7")));
 	}
 }
