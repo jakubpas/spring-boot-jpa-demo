@@ -1,29 +1,28 @@
 package net.jakubpas.demo.service;
 
-import net.jakubpas.demo.dto.ProductDto;
+import net.jakubpas.demo.dto.ProductDTO;
 import net.jakubpas.demo.mapper.ProductMapper;
 import net.jakubpas.demo.model.Product;
 import net.jakubpas.demo.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public class ProductService {
 
-	@Inject
+	@Autowired
 	private ProductRepository productRepository;
-    @Inject
+    @Autowired
     private ProductMapper productMapper;
 
-	public Integer insert(ProductDto productDto) {
-		return productRepository.saveAndFlush(productMapper.productDtoToProduct(productDto)).getId();
+	public Integer insert(ProductDTO productDTO) {
+		return productRepository.saveAndFlush(productMapper.productDtoToProduct(productDTO)).getId();
 	}
 
-	public List<Product> getAll() {
-		return productRepository.findAll();
+	public List<ProductDTO> getAll() {
+		return productMapper.productsToProductDtos(productRepository.findAll());
 	}
 
 	public void loadProducts() {

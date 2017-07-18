@@ -1,13 +1,17 @@
 package net.jakubpas.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.List;
+
 
 @Data
 @Entity
@@ -23,8 +27,7 @@ public class Order {
     @NotNull
     private BigDecimal totalPrice;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Date createDate;
+    private ZonedDateTime createDate;
 
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

@@ -9,13 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel(value = "Model", description = "Model description")
-public class PurchasedProductsDto {
+@ApiModel(value = "Purchased products DTO", description = "Purchased products DTO")
+public class ProductsDTO {
 
     @ApiModelProperty(value = "Product Id")
     private Integer productId;
 
     @ApiModelProperty(value = "Product name")
     private Integer quantity;
-
 }

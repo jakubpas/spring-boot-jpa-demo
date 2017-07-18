@@ -1,7 +1,6 @@
 package net.jakubpas.demo.controller;
 
-import net.jakubpas.demo.dto.ProductDto;
-import net.jakubpas.demo.model.Product;
+import net.jakubpas.demo.dto.ProductDTO;
 import net.jakubpas.demo.service.ProductService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +20,14 @@ public class ProductController {
 
     @ApiOperation("List Products")
     @GetMapping
-    public List<Product> list() {
+    public List<ProductDTO> list() {
         return productService.getAll();
     }
 
-    @ApiOperation(value = "Add ProductDto")
+    @ApiOperation(value = "Add Product")
     @PostMapping
-    public ResponseEntity<Integer> save(@RequestBody ProductDto productDto) {
-        Integer id = productService.insert(productDto);
+    public ResponseEntity<Integer> save(@RequestBody ProductDTO productDTO) {
+        Integer id = productService.insert(productDTO);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 }

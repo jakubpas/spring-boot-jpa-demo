@@ -1,49 +1,13 @@
 package net.jakubpas.demo.mapper;
 
-import net.jakubpas.demo.dto.OrderDto;
-import net.jakubpas.demo.model.Account;
+import net.jakubpas.demo.dto.OrderDTO;
+import net.jakubpas.demo.dto.OrdersDTO;
 import net.jakubpas.demo.model.Order;
-import net.jakubpas.demo.model.Product;
-import net.jakubpas.demo.repository.ProductRepository;
 import org.mapstruct.Mapper;
-
-import javax.inject.Inject;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.IntStream;
 
 @Mapper(componentModel = "spring")
-public abstract class OrderMapper {
-
-    @Inject
-    private ProductRepository productRepository;
-
-    public Order OrderDtoToOrder(OrderDto OrderDto) {
-
-        Order order = new Order();
-        Account account = new Account();
-        account.setName(OrderDto.getCompanyName());
-        account.setAddress(OrderDto.getAddress());
-        account.setEmail(OrderDto.getEmail());
-        account.setPhone(OrderDto.getPhone());
-        account.setCountry(OrderDto.getCountry());
-        account.setCity(OrderDto.getCity());
-        account.setZip(OrderDto.getZip());
-        order.setAccount(account);
-        order.setCreateDate(new Date());
-
-        List<Product> products = new ArrayList<>();
-
-        OrderDto.getProducts().forEach((productDto ->
-                IntStream.range(0, productDto.getQuantity()).forEach(i ->
-                            products.add(productRepository.getOne(productDto.getProductId())))));
-
-        order.setTotalPrice(products.stream().map(Product::getPrice).reduce(BigDecimal.ZERO, BigDecimal::add));
-
-        order.setProducts(products);
-        return order;
-    }
+public interface OrderMapper {
+    Order orderDTOToOrder(OrderDTO OrderDTO);
+    List<OrdersDTO> ordersToOrderListDTOs(List<Order> order);
 }

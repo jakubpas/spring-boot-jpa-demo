@@ -12,13 +12,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
-    private static String BASE_PACKAGE = "net.jakubpas.demo";
-
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
+                .apis(RequestHandlerSelectors.basePackage("net.jakubpas.demo"))
                 .paths(PathSelectors.any())
                 .build();
     }

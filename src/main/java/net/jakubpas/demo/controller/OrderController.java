@@ -1,8 +1,8 @@
 package net.jakubpas.demo.controller;
 
 import io.swagger.annotations.ApiOperation;
-import net.jakubpas.demo.dto.OrderDto;
-import net.jakubpas.demo.model.Order;
+import net.jakubpas.demo.dto.OrderDTO;
+import net.jakubpas.demo.dto.OrdersDTO;
 import net.jakubpas.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +21,14 @@ public class OrderController {
 
     @ApiOperation("List Orders")
     @GetMapping
-    public List<Order> list() {
+    public List<OrdersDTO> list() {
         return OrderService.getAll();
     }
 
-    @ApiOperation(value = "Add OrderDto")
+    @ApiOperation(value = "Add Order")
     @PostMapping
-    public ResponseEntity<Integer> save(@RequestBody OrderDto OrderDto) {
-        Integer id = OrderService.insert(OrderDto);
+    public ResponseEntity<Integer> save(@RequestBody OrderDTO OrderDTO) {
+        Integer id = OrderService.insert(OrderDTO);
         return new ResponseEntity<>(id, HttpStatus.CREATED);
     }
 }

@@ -17,7 +17,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer ecoId;
-    private String name;
+    private String companyName;
     private String email;
     private String phone;
     private String address;
